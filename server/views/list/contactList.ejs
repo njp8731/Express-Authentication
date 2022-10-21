@@ -1,0 +1,53 @@
+<%- include ../partials/header.ejs %>
+
+    <%- include ../partials/top_nav.ejs %>
+
+
+        <main class="container">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    <h1>
+                        <%- title %>
+                    </h1>
+
+                    <a href="/contact-list/add" class="btn btn-primary" role="button">
+                        <i class="fas fa-plus-circle">Add a Contact</i>
+                    </a>
+                    <br>
+                    <br>
+                    <table class="table table-bordered table-striped table-hover">
+                        <!-- Header row -->
+                        <tr>
+                            <th class="text-center col-3">UserName</th>
+                            <th class="text-center col-3">Email Address</th>
+                            <th class="text-center col-1"></th>
+                            <th class="text-center col-1"></th>
+                        </tr>
+
+                        <% for(let count=0; count < ContactList.length; count++) { %>
+                            <tr>
+                                <td class="text-center col-2">
+                                    <%= ContactList[count].username %>
+                                </td>
+                                <td class="text-center col-3">
+                                    <%= ContactList[count].email %>
+                                </td>
+                                <td class="text-center col-1">
+                                    <a href="/contact-list/edit/<%= ContactList[count]._id %>"
+                                        class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i> Edit</a>
+                                </td>
+                                <td class="text-center col-1"><a
+                                        href="/contact-list/delete/<%= ContactList[count]._id %>"
+                                        class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a></td>
+                            </tr>
+                            <%} %>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+
+
+        <%- include ../partials/bottom_nav.ejs %>
+
+            <%- include ../partials/footer.ejs %>
